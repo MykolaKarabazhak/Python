@@ -1,3 +1,6 @@
+from functools import reduce
+
+
 # Задание 1. Встроенные типы данных, операторы, функции и генераторы
 #
 # Напишите реализации объявленных ниже функций. Для проверки
@@ -26,6 +29,16 @@ def fac(n):
         for i in range(1, n+ 1):
             res = i * res
 
+
+    # if n == 1:
+    #     return 1
+    # else:
+    #     return n * fac(n - 1)
+
+from operator import  mul
+def fact_reduice(n):
+    return reduce(lambda x,y:x * y , range(1,n),n)
+    #return reduce((mul(,range(1,n),n)
 
 def gcd(a, b):
     """
@@ -73,6 +86,14 @@ def fib():
         y = x
 
 
+def Fib_():
+    a = b = 1
+    while True:
+        yield a
+        a, b = b, a + b
+
+
+
 def flatten(seq):
     """
     Функция,
@@ -94,3 +115,21 @@ def flatten(seq):
         else:
             flat_list.append()
     return  flat_list
+
+
+
+from collections.abc import Iterable
+def flat(seq):
+    acc = []
+    for x in seq:
+        if type(x) in {list,tuple}:
+        acc.extend(flat(x))
+        else:
+            acc.append(x)
+
+def gelatteen(seq):
+    for i in seq:
+        if type(i) in {list,tuple}:
+            yield from gelatteen(i)
+        else:
+            yield i

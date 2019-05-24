@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Регистрация</title>
+    <style>
+        .form-group input {
+        width: 140px;
+        height: 20px;
+        border-radius: 0;
+        border: 2px solid blue;
+
+        }
+    </style>
+</head>
+<body>
+    <form action="" method="post">
+        {% csrf_token%}
+        {% for field in form %}
+        <div class="form-group">
+        <label for="">{{field.label}}</label>
+            {{field}}
+            {% if field.errors %}
+        <p>{{field.errors}}</p>
+            {% endif %}
+            </div>
+        {%endfor%}
+        <button type="submit">войти</button>
+    </form>
+</body>
+</html>

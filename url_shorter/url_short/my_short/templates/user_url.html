@@ -1,0 +1,25 @@
+{% extends "index_form.html" %}
+{%block content%}
+<table border="1" cellpadding="5px">
+<tr style="background: blue; color:white;">
+
+    <td>Ключ</td>
+    <td>Url</td>
+    <td>Клики</td>
+    <td>Дата получениея</td>
+</tr>
+    {% for elem in elements %}
+    <tr>
+        <td>{{elem.key_url}}</td>
+        <td>{{elem.long_url}}</td>
+        <td>{{elem.click}}</td>
+        <td>{{elem.data_filed}}</td>
+    </tr>
+    {%endfor%}
+    {%endblock%}
+ {% for elem in elements %}
+<p>{{elem.key_url}}</p>
+<p>{{elem.long_url}}</p>
+    <p>{{elem.data_filed}}</p>
+    <p>{{elem.click}}</p>
+{% endfor %}

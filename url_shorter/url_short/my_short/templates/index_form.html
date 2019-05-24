@@ -1,0 +1,117 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        a
+        {
+            display: block;
+            float: right;
+            margin-right: 25px;
+            padding: 10px 50px;
+            color: black;
+
+            border-radius : 15px;
+            border: 1px solid black;
+            text-decoration: none;
+            transition:  color 0.5s, background 0.5s;
+          }
+
+          a:hover
+          {
+            color : white;
+            background : blue;
+            border 1px solid blue;
+          }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js" type="text/javascript">
+    $(document).ready(function(){
+    function ajax_setup(e){
+        e.preventDefault();
+        $.ajax({
+            method:"GET",
+            url:$(this).attr("href"),
+            data:data,
+            success:function(d){
+                $("#delete").remove();
+            }
+        })
+    }
+}
+)
+$("#register").click(ajax_setup);
+    </script>
+<body>
+
+<div id="delete">
+    {% if user.is_authenticated %}
+
+<a href="/logout/">выйти({{user.username}})</a>
+
+{% else %}
+<a href="/register/">Регистрация на сайте</a>
+<a href="/login/">Авторизация</a>
+{% endif %}
+{%block content%}  {% endblock %}
+{% for elem in elements %}
+<p>{{elem.key_url}}</p>
+<p>{{elem.long_url}}</p>
+    <p>{{elem.data_filed}}</p>
+    <p>{{elem.click}}</p>
+{% endfor %}
+    </div>
+<style>
+   section {
+   position:absolute;
+   right:450px;
+   top:320px;
+   }
+   section {
+   font-size:120%;
+   }
+   #user {
+    width: 300px;
+    height: 20px;
+
+   }
+</style>
+
+<div id="form_container">
+    <form>
+        <label for="">Введите вашу ссылку</label>
+        <input name="url" type="text" id="url" size="30">
+        <button type="submit" id="submit">Отправить</button>
+    </form>
+</div>
+<script>
+$(document).ready(function(){
+    function ajax_setup(e){
+        e.preventDefault();
+        const urlInputValue = $('#url')[0].value;
+        const a = document.createElement('a');
+        $.ajax({
+            method:"POST",
+            headers: {'X-CSRFToken': "{{ csrf_token }}"},
+            url:"/get_url/",
+            data: {url: urlInputValue},
+            success:function(shortUrl){
+                a.href = shortUrl;
+                a.innerHTML = shortUrl;
+                const formContainer = $("#form_container")[0];
+                formContainer.innerHTML = '';
+                formContainer.appendChild(a);
+            }
+        })
+    }
+    $("#submit").click(ajax_setup);
+}
+
+
+
+)
+
+</script>
+</body>

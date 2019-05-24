@@ -128,7 +128,7 @@ STATIC_URL = '/static/'
 
 
 
-try:
-    from .settings_prog import *
-except:
-    pass
+# try:
+#     from .settings_prog import *
+# except:
+#     pass

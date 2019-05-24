@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        a
+       .reg
         {
             display: block;
             float: right;
@@ -20,7 +20,7 @@
             transition:  color 0.5s, background 0.5s;
           }
 
-          a:hover
+        .reg:hover
           {
             color : white;
             background : blue;
@@ -49,35 +49,20 @@ $("#register").click(ajax_setup);
 <div id="delete">
     {% if user.is_authenticated %}
 
-<a href="/logout/">выйти({{user.username}})</a>
+<a class = "reg" href="/logout/">выйти({{user.username}})</a>
 
 {% else %}
-<a href="/register/">Регистрация на сайте</a>
-<a href="/login/">Авторизация</a>
+<a class = "reg" href="/register/">Регистрация на сайте</a>
+<a class = "reg" href="/login/">Авторизация</a>
+    </div>
 {% endif %}
-{%block content%}  {% endblock %}
+
 {% for elem in elements %}
 <p>{{elem.key_url}}</p>
 <p>{{elem.long_url}}</p>
     <p>{{elem.data_filed}}</p>
     <p>{{elem.click}}</p>
 {% endfor %}
-    </div>
-<style>
-   section {
-   position:absolute;
-   right:450px;
-   top:320px;
-   }
-   section {
-   font-size:120%;
-   }
-   #user {
-    width: 300px;
-    height: 20px;
-
-   }
-</style>
 
 <div id="form_container">
     <form>

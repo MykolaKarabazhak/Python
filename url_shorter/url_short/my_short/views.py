@@ -57,7 +57,7 @@ class LoginFormView(FormView):
 
     template_name = "login.html"
 
-    success_url = "/main/"
+    success_url = "/"
 
     def form_valid(self, form):
         # получаем обьект пользователя на основе введеных форм данных
@@ -72,7 +72,7 @@ class LoginFormView(FormView):
 class LogoutView(View):
     def get(self, request):
         logout(request)
-        return HttpResponseRedirect("/main/")
+        return HttpResponseRedirect("/")
 
 
 
@@ -106,7 +106,7 @@ def save_url_to_database(url, request):
         long_url = url
         url_from = UrlTable(key_url=key_url,long_url=long_url)
     url_from.save()
-    return  "http://localhost:8000/" + short_url
+    return  "http://68.183.158.178" + short_url
 
 
 def save_short_url(request):

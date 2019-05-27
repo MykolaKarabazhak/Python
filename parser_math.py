@@ -67,6 +67,4 @@ def parser_(enter):
             string_math += " " +  opertion[i]
         else:
             raise TypeError
-    print(string_math)
-enter = "215*"
-parser_(enter)
+
